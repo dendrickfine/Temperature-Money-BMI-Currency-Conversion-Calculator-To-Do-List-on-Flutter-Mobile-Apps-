@@ -1,0 +1,37 @@
+name: myarsenal
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.3 <4.0.0'  # Modified this line
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.19.0  # Updated to latest version
+  shared_preferences: ^2.2.2
+  get: ^4.6.5
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.14
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/dmi.png
+    - assets/images/to.png
+    - assets/images/theoffice.png
+    - assets/images/foto.png
+    - assets/images/dminc.svg
+
+  fonts:
+    - family: PlusJakarta
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
