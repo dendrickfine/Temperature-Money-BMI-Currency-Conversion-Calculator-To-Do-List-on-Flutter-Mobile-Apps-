@@ -58,62 +58,64 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Temperature Convertion', style: TextStyles.titlewhite),
+        title: Text('Temperature Conversion', style: TextStyles.titlewhite),
         backgroundColor: AppColors.arsenalblack,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: _inputController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Input Temperature Value',
-                labelStyle: TextStyles.body,
-                border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextField(
+                controller: _inputController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Input Temperature Value',
+                  labelStyle: TextStyles.body,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: _convertTemperature,
               ),
-              onChanged: _convertTemperature,
-            ),
-            const SizedBox(height: 20),
-            DropdownButton<String>(
-              value: _selectedUnit,
-              isExpanded: true,
-              items: ['Celsius', 'Fahrenheit', 'Kelvin']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value, style: TextStyles.body),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedUnit = newValue!;
-                  _convertTemperature(_inputController.text);
-                });
-              },
-            ),
-            const SizedBox(height: 40),
-            Card(
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Text('Cenvertion Result:', style: TextStyles.title),
-                    const SizedBox(height: 20),
-                    _buildResultRow('Celsius', _celsius, '°C'),
-                    const Divider(),
-                    _buildResultRow('Fahrenheit', _fahrenheit, '°F'),
-                    const Divider(),
-                    _buildResultRow('Kelvin', _kelvin, 'K'),
-                  ],
+              const SizedBox(height: 20),
+              DropdownButton<String>(
+                value: _selectedUnit,
+                isExpanded: true,
+                items: ['Celsius', 'Fahrenheit', 'Kelvin']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value, style: TextStyles.body),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedUnit = newValue!;
+                    _convertTemperature(_inputController.text);
+                  });
+                },
+              ),
+              const SizedBox(height: 40),
+              Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text('Conversion Result:', style: TextStyles.title),
+                      const SizedBox(height: 20),
+                      _buildResultRow('Celsius', _celsius, '°C'),
+                      const Divider(),
+                      _buildResultRow('Fahrenheit', _fahrenheit, '°F'),
+                      const Divider(),
+                      _buildResultRow('Kelvin', _kelvin, 'K'),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
