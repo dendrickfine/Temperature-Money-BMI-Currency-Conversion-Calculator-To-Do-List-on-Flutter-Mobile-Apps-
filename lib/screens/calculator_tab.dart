@@ -164,63 +164,65 @@ class _CalculatorTabState extends State<CalculatorTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              alignment: Alignment.topRight,
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-              child: Text(
-                _history,
-                style: TextStyles.body.copyWith(
-                  fontSize: 20,
-                  color: AppColors.arsenalblack.withOpacity(0.6),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                alignment: Alignment.topRight,
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+                child: Text(
+                  _history,
+                  style: TextStyles.body.copyWith(
+                    fontSize: 20,
+                    color: AppColors.arsenalblack.withOpacity(0.6),
+                  ),
                 ),
               ),
-            ),
-            Container(
-              alignment: Alignment.bottomRight,
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-              child: Text(
-                _display,
-                style: TextStyles.title.copyWith(fontSize: 48),
+              Container(
+                alignment: Alignment.bottomRight,
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+                child: Text(
+                  _display,
+                  style: TextStyles.title.copyWith(fontSize: 48),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            ...List.generate(
-              _buttons.length,
-                  (i) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(
-                    _buttons[i].length,
-                        (j) => SizedBox(
-                      width: 75,
-                      height: 75,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _getButtonColor(_buttons[i][j]),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+              const SizedBox(height: 20),
+              ...List.generate(
+                _buttons.length,
+                    (i) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: List.generate(
+                      _buttons[i].length,
+                          (j) => SizedBox(
+                        width: 75,
+                        height: 75,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: _getButtonColor(_buttons[i][j]),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            elevation: 2,
+                            padding: const EdgeInsets.all(16),
                           ),
-                          elevation: 2,
-                          padding: const EdgeInsets.all(16),
-                        ),
-                        onPressed: () => _handleButtonPress(_buttons[i][j]),
-                        child: Text(
-                          _buttons[i][j],
-                          style: _getButtonTextStyle(_buttons[i][j]),
+                          onPressed: () => _handleButtonPress(_buttons[i][j]),
+                          child: Text(
+                            _buttons[i][j],
+                            style: _getButtonTextStyle(_buttons[i][j]),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
