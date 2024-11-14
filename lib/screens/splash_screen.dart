@@ -118,7 +118,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       const SizedBox(height: 50),
                       // Name with enhanced typography
                       Text(
-                        'Mohamad Dedrick Finnegan',
+                        'M. Dedrick Finnegan',
                         style: TextStyles.titlewhite.copyWith(
                           fontSize: 28,
                           letterSpacing: 0.5,
